@@ -1,6 +1,15 @@
 # Runtime-Terror project
 https://trello.com/b/9pDRgQAe/net-projekt
 
+# DISCLAIMER
+
+This project was made during our .NET course in university and the original repository was uploaded to the university's repository, which is private. This repository is just a clone to that repository. This project was made by 4 persons: @tibiv111, @molnarhuny, @AkosCsaszar and myself included and the contributions were the following:
+
+- @tibiv111 and @AkosCsaszar made the frontend part of the website
+- @molnarhuny made the Unit Tests of the API
+- I made the backend part of the website, which was the API creation
+
+
 # Git rules
 
 # Branches - IMPORTANT
