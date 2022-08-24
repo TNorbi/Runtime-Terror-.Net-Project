@@ -1,0 +1,19 @@
+<div
+  class="card"
+  [ngClass]="{ 'full-height': fullHeight === true }"
+  fxLayout="column"
+>
+  <div
+    class="card-title"
+    *ngIf="showTitle"
+    [ngClass]="{
+      'card-title--yellow': titleType === 1,
+      'card-title--transparent': titleType === 0
+    }"
+  >
+    <ng-content select="[title]" class="title-wrapper"></ng-content>
+  </div>
+  <div class="card-body">
+    <ng-content select="[body]"></ng-content>
+  </div>
+</div>

@@ -1,0 +1,238 @@
+<div class="wrapper">
+  <app-card [showTitle]="true">
+    <div title>
+      <div class="title-class">
+        <div class="col-left">
+          <span>{{ title }}</span>
+        </div>
+        <div class="col-right">
+          <button class="icon">
+            <img [src]="iconSource" alt="" (click)="closeLogin()" />
+          </button>
+        </div>
+      </div>
+    </div>
+    <div body>
+      <ng-template [ngIf]="login">
+        <form class="form" (ngSubmit)="handleSubmit()" [formGroup]="loginForm">
+          <div class="form-group" formGroupName="credentials">
+            <h2 class="title-description">Please log in</h2>
+            <div gdColumns="auto auto" gdGap="2rem 1 rem">
+              <div fxLayout="column" class="input-field">
+                <label for="username"
+                  >Username:<span class="required">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="search-modal"
+                  formControlName="username"
+                />
+              </div>
+              <div fxLayout="column" class="input-field">
+                <label for="password">
+                  Password: <span class="required"> *</span>
+                </label>
+                <input
+                  type="password"
+                  id="search-modal"
+                  formControlName="password"
+                />
+              </div>
+            </div>
+            <div class="error" *ngIf="loginUserData">
+              <span
+                [ngClass]="
+                  this.loginUserData.code !== 200
+                    ? 'error-message'
+                    : 'hidden-message'
+                "
+                >Username / password error</span
+              >
+            </div>
+          </div>
+
+          <div class="form-group" fxLayout="row" fxLayoutAlign="end none">
+            <div class="btn-wrapper">
+              <span class="distance">
+                <button
+                  type="submit"
+                  mat-button
+                  class="btn"
+                  [ngClass]="{ disabled: loginForm.invalid }"
+                  [disabled]="loginForm.invalid"
+                >
+                  LOGIN
+                </button>
+              </span>
+              <span class="distance">
+                <button mat-button class="btn" (click)="toggleRegisterPage()">
+                  REGISTER
+                </button>
+              </span>
+            </div>
+            <div class="forgot-pw" (click)="toggleForgotPasswordPage()">
+              Forgot password
+            </div>
+          </div>
+        </form>
+      </ng-template>
+
+      <ng-template [ngIf]="forgotPassword">
+        <form
+          class="form"
+          (ngSubmit)="resetPasswordSubmit()"
+          [formGroup]="forgotPasswordForm"
+        >
+          <div class="form-group" formGroupName="credentials">
+            <h2 class="title-description">Reset your password</h2>
+            <div gdColumns="auto auto" gdGap="2rem 1 rem">
+              <div fxLayout="column" class="input-field">
+                <label for="username">
+                  Username: <span class="required">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="search-modal"
+                  formControlName="username"
+                />
+              </div>
+              <div fxLayout="column" class="input-field">
+                <label for="email">
+                  Email : <span class="required">*</span>
+                </label>
+                <input type="email" id="search-modal" formControlName="email" />
+              </div>
+              <div fxLayout="column" class="input-field">
+                <label for="password">
+                  Password:<span class="required">*</span>
+                </label>
+                <input
+                  type="password"
+                  id="search-modal"
+                  formControlName="password"
+                />
+              </div>
+            </div>
+            <div class="error" *ngIf="resetPasswordData">
+              <span
+                [ngClass]="
+                  this.resetPasswordData.code !== 200
+                    ? 'error-message'
+                    : 'hidden-message'
+                "
+                >Username / password error</span
+              >
+            </div>
+          </div>
+
+          <div class="form-group" fxLayout="row" fxLayoutAlign="end none">
+            <div class="btn-wrapper">
+              <span class="middle-orientation">
+                <button
+                  type="submit"
+                  [ngClass]="{ disabled: forgotPasswordForm.invalid }"
+                  [disabled]="forgotPasswordForm.invalid"
+                  mat-button
+                  class="btn"
+                >
+                  RESET PASSWORD
+                </button>
+              </span>
+            </div>
+          </div>
+        </form>
+      </ng-template>
+
+      <ng-template [ngIf]="register">
+        <form
+          class="form"
+          (ngSubmit)="registerUser()"
+          [formGroup]="registerForm"
+        >
+          <div class="form-group" formGroupName="credentials">
+            <h2 class="title-description">Please fill out the following:</h2>
+            <div
+              gdColumns="auto auto"
+              gdGap="2rem 1rem"
+              class="form-input-align"
+            >
+              <div fxLayout="column" class="input-field">
+                <label for="username">
+                  Username: <span class="required">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="search-modal-variant"
+                  formControlName="username"
+                />
+              </div>
+              <div fxLayout="column" class="input-field">
+                <label for="password">
+                  Password : <span class="required"> *</span>
+                </label>
+                <input
+                  type="password"
+                  id="search-modal-variant"
+                  formControlName="password"
+                />
+              </div>
+              <div fxLayout="column" class="input-field">
+                <label for="email">
+                  Email : <span class="required"> *</span>
+                </label>
+                <input
+                  type="email"
+                  id="search-modal-variant"
+                  formControlName="email"
+                />
+              </div>
+              <div fxLayout="column" class="input-field">
+                <label for="firstName"> First Name : </label>
+                <input
+                  type="text"
+                  id="search-modal-variant"
+                  formControlName="firstName"
+                />
+              </div>
+              <div fxLayout="column" class="input-field">
+                <label for="lastName"> Last Name : </label>
+                <input
+                  type="text"
+                  id="search-modal-variant"
+                  formControlName="lastName"
+                />
+              </div>
+            </div>
+
+            <div class="error" *ngIf="registerUserData">
+              <span
+                [ngClass]="
+                  this.registerUserData.code !== 200
+                    ? 'error-message'
+                    : 'hidden-message'
+                "
+                >Username / password / email error</span
+              >
+            </div>
+          </div>
+
+          <div class="form-group" fxLayout="row" fxLayoutAlign="end none">
+            <div class="btn-wrapper">
+              <span class="middle-orientation">
+                <button
+                  type="submit"
+                  [ngClass]="{ disabled: registerForm.invalid }"
+                  [disabled]="registerForm.invalid"
+                  mat-button
+                  class="btn"
+                >
+                  REGISTER
+                </button>
+              </span>
+            </div>
+          </div>
+        </form>
+      </ng-template>
+    </div>
+  </app-card>
+</div>

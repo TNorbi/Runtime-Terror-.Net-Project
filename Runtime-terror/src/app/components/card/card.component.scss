@@ -1,0 +1,28 @@
+.card {
+  box-shadow: 0px 1px 6px rgba(38, 46, 64, 0.15);
+  background-color: #252b2f;
+  &.full-height {
+    height: 90%;
+  }
+}
+
+.card-title {
+  padding: 1.2rem;
+  font-size: 1.125rem;
+  font-weight: normal;
+  margin: 0;
+  text-transform: uppercase;
+  &--yellow {
+    background-color: #171d22; //rgba(23, 26, 33, 0.95)
+    color: white;
+  }
+  &--transparent {
+    background-color: transparent;
+    border-bottom: 0.07rem solid #cadcf8;
+  }
+
+  .card-body {
+    height: 100%;
+    padding: 1.2rem 1.5rem;
+  }
+}
